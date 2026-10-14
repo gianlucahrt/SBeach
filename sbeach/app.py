@@ -24,7 +24,7 @@ from .config import Config, log_path
 from .controller import Controller
 from .hotkey import HOTKEYS, HotkeyTap
 from .transcriber import MODELS, Transcriber
-from . import llm, media
+from . import legal, llm, media
 from .ui.hud import Hud
 from .ui.main_window import MainWindow
 from .ui.menubar import StatusMenu
@@ -237,6 +237,10 @@ class AppDelegate(NSObject):
         if not defaults.boolForKey_("SBeachLaunchedBefore"):
             defaults.setBool_forKey_(True, "SBeachLaunchedBefore")
             self.main.show()
+
+        if not legal.notice_accepted(defaults):
+            # Nach dem Start zeigen, damit Menüleiste und Fenster schon stehen
+            AppHelper.callLater(0.6, legal.show_notice, True)
 
         self.ctrl.preload()
         self.refresh()

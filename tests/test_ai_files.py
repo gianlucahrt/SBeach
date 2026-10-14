@@ -131,3 +131,23 @@ def test_claude_without_key_explains(monkeypatch):
     monkeypatch.setattr(llm, "get_api_key", lambda: None)
     with pytest.raises(RuntimeError, match="API Schlüssel"):
         llm.ClaudeLLM().generate([])
+
+
+def test_legal_notice_versioning():
+    from sbeach import legal
+
+    class Defaults:
+        def __init__(self):
+            self.v = {}
+
+        def integerForKey_(self, k):
+            return self.v.get(k, 0)
+
+        def setInteger_forKey_(self, val, k):
+            self.v[k] = val
+
+    d = Defaults()
+    assert not legal.notice_accepted(d)
+    legal.mark_accepted(d)
+    assert legal.notice_accepted(d)
+    assert "§ 201 StGB" in legal.NOTICE_TEXT and "MIT" in legal.LICENSE_TEXT

@@ -109,6 +109,7 @@ sbeach/
   inserter.py      Einfügen in die aktive App, Zwischenablage wird wiederhergestellt
   media.py         Audio und Video lesen (ffmpeg), Abschnitte, SRT Export
   llm.py           KI Baustein: lokal (mlx-lm) oder Claude, Prompt Vorlagen
+  legal.py         Nutzungshinweis und Lizenzinformationen in der App
   snapshot.py      Selbstprüfung: rendert alle Fenster in Hell und Dunkel als PNG
   ui/              Hauptfenster, Ergebnisfenster, Aufnahme Kapsel, Einstellungen,
                    Menüleiste und das gemeinsame Farb und Typosystem
@@ -132,11 +133,26 @@ python -m pytest
 
 Einstellungen liegen in `~/Library/Application Support/SBeach/config.json`, das Protokoll in `~/Library/Logs/SBeach.log`.
 
+## Verantwortungsvoll nutzen
+
+SBeach ist ein Werkzeug für die eigene Stimme und eigene Inhalte. Beim ersten Start zeigt die App einen Nutzungshinweis, der sich jederzeit unter Einstellungen › Rechtliches erneut öffnen lässt:
+
+* Gespräche anderer Personen nur mit deren Einverständnis aufnehmen. Heimliche Aufnahmen nicht öffentlich gesprochener Worte sind in Deutschland strafbar (§ 201 StGB).
+* Fremde Videos, Audios und Sprachnachrichten nur für den eigenen Gebrauch transkribieren und Transkripte oder Untertitel fremder Inhalte nicht ohne Erlaubnis veröffentlichen.
+* SBeach nicht für Straftaten, Belästigung, Täuschung oder die Verletzung von Rechten Dritter verwenden.
+* KI Ergebnisse können Fehler enthalten und sollten vor dem Versenden geprüft werden.
+
+Die Verantwortung für die Nutzung liegt bei den Nutzenden. SBeach wird ohne jede Gewährleistung bereitgestellt.
+
 ## Roadmap
 
 - [ ] Schreibmodus: Gedanken einsprechen, fertige Mail oder Nachricht einfügen lassen, passend zur aktiven App
 - [ ] Gespräche aufnehmen und automatisch zusammenfassen (mit deutlichem Aufnahmehinweis)
 - [ ] Systemton von Video Calls mitschneiden
+
+## Lizenz
+
+SBeach steht unter der [MIT Lizenz](LICENSE). Verwendete Bibliotheken und Modelle samt ihrer Lizenzen sind in [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) aufgeführt. SBeach steht in keiner Verbindung zu Apple, OpenAI, Alibaba oder Anthropic.
 
 ---
 

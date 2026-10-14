@@ -216,6 +216,14 @@ class SettingsWindow(NSObject):
                                       "Schlüssel unter console.anthropic.com erstellen.")))
 
         rows.append(("SEPARATOR", None))
+        notice = NSButton.buttonWithTitle_target_action_("Nutzungshinweise …", self, "openNotice:")
+        licenses = NSButton.buttonWithTitle_target_action_("Lizenzen …", self, "openLicenses:")
+        legal_row = NSStackView.stackViewWithViews_([notice, licenses])
+        legal_row.setOrientation_(NSUserInterfaceLayoutOrientationHorizontal)
+        legal_row.setSpacing_(8.0)
+        rows.append(("Rechtliches", legal_row))
+
+        rows.append(("SEPARATOR", None))
         self._perm_actions = {}
         for i, (name, granted, open_fn) in enumerate(self.permissions()):
             rows.append(("Berechtigungen" if i == 0 else "", self._permission_row(name, granted, open_fn, i)))
@@ -331,6 +339,16 @@ class SettingsWindow(NSObject):
             self._emit("api_key", key)
             sender.setStringValue_("")
             sender.setPlaceholderString_("Gespeichert im Schlüsselbund")
+
+    def openNotice_(self, sender):
+        from ..legal import show_notice
+
+        show_notice()
+
+    def openLicenses_(self, sender):
+        from ..legal import show_licenses
+
+        show_licenses()
 
     def changeLogin_(self, sender):
         self._emit("login", bool(sender.state()))
