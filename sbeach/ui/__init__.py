@@ -1,0 +1,1 @@
+"""Oberfläche von SBeach (AppKit)."""
